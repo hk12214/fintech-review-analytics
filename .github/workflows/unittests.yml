@@ -18,5 +18,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    
+        pip install pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Install spaCy NLP Models
+      run: python -m spacy download en_core_web_sm
+
+    - name: Execute Pytest Suite
+      run: python -m pytest
